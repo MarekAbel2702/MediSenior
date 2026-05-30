@@ -1,0 +1,118 @@
+<ContentPage
+    x:Class="MediSenior.Views.MedicineFormPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Dodaj lek">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="22">
+
+            <VerticalStackLayout Spacing="8">
+                <Label
+                    Text="Dodaj lek"
+                    Style="{StaticResource PageTitleLabel}" />
+
+                <Label
+                    Text="Uzupełnij dane leku oraz godziny jego przyjmowania."
+                    Style="{StaticResource SubtitleLabel}" />
+            </VerticalStackLayout>
+
+            <Frame Style="{StaticResource CardFrame}">
+                <VerticalStackLayout Spacing="18">
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Nazwa leku" Style="{StaticResource SmallInfoLabel}" />
+                        <Frame Style="{StaticResource InputFrame}">
+                            <Entry
+                                Text="{Binding Name}"
+                                Placeholder="np. Metformina" />
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Dawka" Style="{StaticResource SmallInfoLabel}" />
+                        <Frame Style="{StaticResource InputFrame}">
+                            <Entry
+                                Text="{Binding Dose}"
+                                Placeholder="np. 500 mg albo 1 tabletka" />
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <Label
+                        Text="Godziny przyjmowania"
+                        Style="{StaticResource SectionTitleLabel}" />
+
+                    <Frame
+                        BackgroundColor="#EFF6FF"
+                        BorderColor="#BFDBFE"
+                        CornerRadius="18"
+                        Padding="14"
+                        HasShadow="False">
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="Godzina 1" Style="{StaticResource SmallInfoLabel}" />
+                            <TimePicker Time="{Binding Time1}" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <Frame
+                        BackgroundColor="#F8FAFC"
+                        BorderColor="{StaticResource BorderColor}"
+                        CornerRadius="18"
+                        Padding="14"
+                        HasShadow="False">
+                        <VerticalStackLayout Spacing="8">
+                            <HorizontalStackLayout Spacing="10">
+                                <CheckBox IsChecked="{Binding UseTime2}" />
+                                <Label
+                                    Text="Dodaj drugą godzinę"
+                                    FontSize="20"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+
+                            <TimePicker
+                                Time="{Binding Time2}"
+                                IsVisible="{Binding UseTime2}" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <Frame
+                        BackgroundColor="#F8FAFC"
+                        BorderColor="{StaticResource BorderColor}"
+                        CornerRadius="18"
+                        Padding="14"
+                        HasShadow="False">
+                        <VerticalStackLayout Spacing="8">
+                            <HorizontalStackLayout Spacing="10">
+                                <CheckBox IsChecked="{Binding UseTime3}" />
+                                <Label
+                                    Text="Dodaj trzecią godzinę"
+                                    FontSize="20"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+
+                            <TimePicker
+                                Time="{Binding Time3}"
+                                IsVisible="{Binding UseTime3}" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Uwagi" Style="{StaticResource SmallInfoLabel}" />
+                        <Frame Style="{StaticResource InputFrame}">
+                            <Editor
+                                Text="{Binding Notes}"
+                                Placeholder="np. po posiłku"
+                                HeightRequest="110" />
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <Button
+                        Text="Zapisz lek"
+                        Command="{Binding SaveCommand}" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

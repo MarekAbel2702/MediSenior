@@ -1,0 +1,95 @@
+<ContentPage
+    x:Class="MediSenior.Views.RegisterPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Rejestracja">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="22">
+
+            <VerticalStackLayout Spacing="8" Margin="0,20,0,0">
+                <Label
+                    Text="Utwórz konto"
+                    Style="{StaticResource PageTitleLabel}" />
+
+                <Label
+                    Text="Wybierz, czy zakładasz konto seniora, czy opiekuna."
+                    Style="{StaticResource SubtitleLabel}" />
+            </VerticalStackLayout>
+
+            <Frame Style="{StaticResource CardFrame}">
+                <VerticalStackLayout Spacing="18">
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Imię" Style="{StaticResource SmallInfoLabel}" />
+                        <Frame Style="{StaticResource InputFrame}">
+                            <Entry
+                                Text="{Binding Name}"
+                                Placeholder="np. Jan" />
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Email" Style="{StaticResource SmallInfoLabel}" />
+                        <Frame Style="{StaticResource InputFrame}">
+                            <Entry
+                                Text="{Binding Email}"
+                                Keyboard="Email"
+                                Placeholder="email@example.com" />
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Hasło" Style="{StaticResource SmallInfoLabel}" />
+                        <Frame Style="{StaticResource InputFrame}">
+                            <Entry
+                                Text="{Binding Password}"
+                                IsPassword="True"
+                                Placeholder="Minimum 6 znaków" />
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <Label
+                        Text="Typ konta"
+                        Style="{StaticResource SectionTitleLabel}" />
+
+                    <Frame
+                        BackgroundColor="#EFF6FF"
+                        BorderColor="#BFDBFE"
+                        CornerRadius="18"
+                        Padding="14"
+                        HasShadow="False">
+                        <HorizontalStackLayout Spacing="12">
+                            <CheckBox IsChecked="{Binding IsSenior}" />
+                            <VerticalStackLayout>
+                                <Label Text="Senior" FontSize="21" FontAttributes="Bold" />
+                                <Label Text="Osoba przyjmująca leki" Style="{StaticResource SmallInfoLabel}" />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </Frame>
+
+                    <Frame
+                        BackgroundColor="#F8FAFC"
+                        BorderColor="{StaticResource BorderColor}"
+                        CornerRadius="18"
+                        Padding="14"
+                        HasShadow="False">
+                        <HorizontalStackLayout Spacing="12">
+                            <CheckBox IsChecked="{Binding IsCaregiver}" />
+                            <VerticalStackLayout>
+                                <Label Text="Opiekun" FontSize="21" FontAttributes="Bold" />
+                                <Label Text="Osoba monitorująca przyjmowanie leków" Style="{StaticResource SmallInfoLabel}" />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </Frame>
+
+                    <Button
+                        Text="Utwórz konto"
+                        Command="{Binding RegisterCommand}" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

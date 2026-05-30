@@ -1,0 +1,140 @@
+<ContentPage
+    x:Class="MediSenior.Views.SeniorHomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Moje leki"
+    Shell.BackButtonBehavior="{BackButtonBehavior IsVisible=False, IsEnabled=False}">
+
+    <Grid RowDefinitions="Auto,Auto,*" Padding="20" RowSpacing="16">
+
+        <Frame Grid.Row="0" Style="{StaticResource CardFrame}" Padding="18">
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+
+                <VerticalStackLayout Spacing="6">
+                    <Label
+                        Text="{Binding Title}"
+                        Style="{StaticResource PageTitleLabel}" />
+
+                    <Label
+                        Text="{Binding SeniorCodeText}"
+                        Style="{StaticResource SmallInfoLabel}" />
+                </VerticalStackLayout>
+
+                <Button
+                    Grid.Column="1"
+                    Text="Wyloguj"
+                    Style="{StaticResource SecondaryButton}"
+                    Command="{Binding LogoutCommand}" />
+            </Grid>
+        </Frame>
+
+        <Grid Grid.Row="1" ColumnDefinitions="*,*" ColumnSpacing="12">
+            <Button
+                Text="Odśwież"
+                Style="{StaticResource SecondaryButton}"
+                Command="{Binding LoadCommand}" />
+
+            <Button
+                Grid.Column="1"
+                Text="Dodaj lek"
+                Command="{Binding AddMedicineCommand}" />
+        </Grid>
+
+        <CollectionView Grid.Row="2" ItemsSource="{Binding Medicines}">
+            <CollectionView.EmptyView>
+                <Frame Style="{StaticResource CardFrame}">
+                    <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
+                        <Label
+                            Text="Brak leków na dziś"
+                            FontSize="24"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center" />
+
+                        <Label
+                            Text="Dodaj pierwszy lek, aby aplikacja mogła przypominać o jego przyjmowaniu."
+                            Style="{StaticResource SubtitleLabel}"
+                            HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                </Frame>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Style="{StaticResource CardFrame}">
+                        <VerticalStackLayout Spacing="14">
+
+                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="16">
+                                <Frame
+                                    BackgroundColor="#DBEAFE"
+                                    BorderColor="#BFDBFE"
+                                    CornerRadius="18"
+                                    Padding="14,10"
+                                    HasShadow="False">
+                                    <Label
+                                        Text="{Binding Time}"
+                                        FontSize="28"
+                                        FontAttributes="Bold"
+                                        TextColor="{StaticResource PrimaryDarkColor}" />
+                                </Frame>
+
+                                <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                    <Label
+                                        Text="{Binding Name}"
+                                        FontSize="26"
+                                        FontAttributes="Bold" />
+
+                                    <Label
+                                        Text="{Binding Dose}"
+                                        FontSize="21"
+                                        TextColor="{StaticResource TextSecondaryColor}" />
+                                </VerticalStackLayout>
+                            </Grid>
+
+                            <Label
+                                Text="{Binding Notes}"
+                                FontSize="18"
+                                TextColor="{StaticResource TextSecondaryColor}" />
+
+                            <Frame
+                                BackgroundColor="#F8FAFC"
+                                BorderColor="{StaticResource BorderColor}"
+                                CornerRadius="16"
+                                Padding="12"
+                                HasShadow="False">
+                                <Label
+                                    Text="{Binding StatusText}"
+                                    FontSize="20"
+                                    FontAttributes="Bold"
+                                    TextColor="{StaticResource TextPrimaryColor}" />
+                            </Frame>
+
+                            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                                <Button
+                                    Text="Szczegóły"
+                                    Style="{StaticResource SecondaryButton}"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ShowDetailsCommand}"
+                                    CommandParameter="{Binding .}" />
+
+                                <Button
+                                    Grid.Column="1"
+                                    Text="Usuń"
+                                    Style="{StaticResource DangerButton}"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteMedicineCommand}"
+                                    CommandParameter="{Binding .}" />
+                            </Grid>
+
+                            <Button
+                                Text="{Binding MarkButtonText}"
+                                IsEnabled="{Binding CanMarkAsTaken}"
+                                Style="{StaticResource SuccessButton}"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.MarkAsTakenCommand}"
+                                CommandParameter="{Binding .}" />
+
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,74 @@
+<ContentPage
+    x:Class="MediSenior.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Logowanie">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="24">
+
+            <VerticalStackLayout Spacing="8" Margin="0,30,0,10">
+                <Label
+                    Text="MediSenior"
+                    FontSize="42"
+                    FontAttributes="Bold"
+                    TextColor="{StaticResource PrimaryColor}" />
+
+                <Label
+                    Text="Bezpieczne przypomnienia o lekach dla seniora i opiekuna"
+                    Style="{StaticResource SubtitleLabel}" />
+            </VerticalStackLayout>
+
+            <Frame Style="{StaticResource CardFrame}">
+                <VerticalStackLayout Spacing="18">
+
+                    <Label
+                        Text="Zaloguj się"
+                        Style="{StaticResource SectionTitleLabel}" />
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Email" Style="{StaticResource SmallInfoLabel}" />
+                        <Frame Style="{StaticResource InputFrame}">
+                            <Entry
+                                Text="{Binding Email}"
+                                Keyboard="Email"
+                                Placeholder="email@example.com" />
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Hasło" Style="{StaticResource SmallInfoLabel}" />
+                        <Frame Style="{StaticResource InputFrame}">
+                            <Entry
+                                Text="{Binding Password}"
+                                IsPassword="True"
+                                Placeholder="Wpisz hasło" />
+                        </Frame>
+                    </VerticalStackLayout>
+
+                    <Button
+                        Text="Zaloguj"
+                        Command="{Binding LoginCommand}" />
+
+                    <Button
+                        Text="Przypomnij hasło"
+                        Style="{StaticResource SecondaryButton}"
+                        Command="{Binding ResetPasswordCommand}" />
+
+                    <Button
+                        Text="Załóż konto"
+                        Style="{StaticResource SecondaryButton}"
+                        Command="{Binding GoToRegisterCommand}" />
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <Label
+                Text="Aplikacja pomaga pamiętać o lekach i pozwala opiekunowi sprawdzać, czy dawka została przyjęta."
+                Style="{StaticResource SmallInfoLabel}"
+                HorizontalTextAlignment="Center"
+                Margin="10,0" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
