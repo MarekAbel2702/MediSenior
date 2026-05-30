@@ -160,81 +160,6 @@ Do uruchomienia projektu potrzebne są:
 
 ---
 
-## Konfiguracja Firebase
-
-Aby aplikacja mogła korzystać z Firebase, należy utworzyć projekt w konsoli Firebase i skonfigurować odpowiednie usługi.
-
-### 1. Utworzenie projektu Firebase
-
-1. Przejdź do Firebase Console.
-2. Utwórz nowy projekt.
-3. Dodaj aplikację Android lub iOS.
-4. Pobierz plik konfiguracyjny Firebase.
-
-Dla Androida będzie to najczęściej:
-
-```text
-google-services.json
-```
-
-Dla iOS:
-
-```text
-GoogleService-Info.plist
-```
-
----
-
-### 2. Włączenie logowania
-
-W Firebase należy włączyć metodę logowania, na przykład:
-
-- Email/Password,
-- Google Sign-In,
-- inne metody dostępne w Firebase Authentication.
-
-Najprostsza konfiguracja dla projektu edukacyjnego to logowanie przez adres e-mail i hasło.
-
----
-
-### 3. Baza danych
-
-Aplikacja może korzystać z jednej z baz Firebase:
-
-- **Cloud Firestore**
-- **Realtime Database**
-
-Przykładowa struktura danych może wyglądać tak:
-
-```json
-{
-  "users": {
-    "userId123": {
-      "email": "pacjent@example.com",
-      "role": "pacjent",
-      "name": "Jan Kowalski"
-    }
-  },
-  "medicines": {
-    "medicineId456": {
-      "userId": "userId123",
-      "name": "Apap",
-      "dose": "1 tabletka",
-      "times": ["08:00", "20:00"],
-      "notes": "Przyjmować po posiłku"
-    }
-  },
-  "reminders": {
-    "reminderId789": {
-      "medicineId": "medicineId456",
-      "time": "08:00",
-      "isTaken": false
-    }
-  }
-}
-```
-
----
 
 ## Instalacja i uruchomienie
 
@@ -270,9 +195,6 @@ dotnet restore
 ### 4. Dodanie konfiguracji Firebase
 
 Dodaj plik Firebase do odpowiedniego miejsca w projekcie.
-
-
-Należy upewnić się, że pliki konfiguracyjne nie są przypadkowo udostępniane publicznie, jeśli zawierają wrażliwe dane projektu.
 
 ---
 
